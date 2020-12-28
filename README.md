@@ -1,0 +1,2 @@
+# Spider_ID_9_Option_B-
+Escriba una herramienta que a partir de la página web y una etiqueta que reciba como parámetros enumere la ruta que toma la herramienta al acceder a todas las páginas que tienen esa etiqueta. La herramienta considerará una etiqueta válida si el enlace contiene esa etiqueta dentro del campo &lt;a ...> &lt;/a> Si hay varias páginas en una página que contienen esa etiqueta, se accederá a todas
