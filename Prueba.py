@@ -1,6 +1,7 @@
 #! python3
 
 # Importamos librerías. #
+import urllib.request #Libreria necesaria para poder calcular el peso de la pagina#
 import requests
 import sys
 
@@ -40,11 +41,25 @@ for line in soup.find_all('a'):
 			pass
 	else:
 		pass
-#Accedemos a las paginas recogidas inicialmente y comprobamos si son accesibles o no#
-for get_this in urls:
-	if get_this[:4] == "http":
-		print('URL:',get_this)
-	elif get_this[:1] == "/":
-		print('URL:',get_this)
-	else:
-		print('No se puede acceder al enlace', get_this)
+if len(urls)>0:
+
+	#Accedemos a las paginas recogidas inicialmente y comprobamos si son accesibles o no#
+	for get_this in urls:
+		if get_this[:4] == "http":
+			url = get_this
+			usock = urllib.request.urlopen(url)
+			data = usock.read()
+			size = data.__len__() 
+			size = size / 1024.0 # Tamaño en KB
+			print ('URL:',get_this,'   |   Size: ',size,'Kb')
+		elif get_this[:1] == "/":
+			url = get_this
+			usock = urllib.request.urlopen(url)
+			data = usock.read()
+			size = data.__len__() 
+			size = size / 1024.0 # Tamaño en KB
+			print ('URL:',get_this,'   |   Size: ',size,'Kb')
+		else:
+			print('URL:',get_this,'  -->  Link can not be accessed')
+else:
+	print('No hyperlinks were found containing the tag:', sys.argv[2])
